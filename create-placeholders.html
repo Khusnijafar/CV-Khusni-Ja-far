@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Project Placeholders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        canvas {
+            border: 2px solid #ddd;
+            margin: 10px;
+            border-radius: 8px;
+        }
+        .download-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        .download-btn:hover {
+            background: #1d4ed8;
+        }
+        .instructions {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="instructions">
+            <h1>Project Placeholder Images</h1>
+            <p>Click the download buttons below each image to save them to your computer. Then move the downloaded files to the <code>public</code> folder of your website.</p>
+        </div>
+        
+        <div>
+            <canvas id="ecommerce" width="400" height="220"></canvas>
+            <br>
+            <button class="download-btn" onclick="downloadImage('ecommerce', 'project-ecommerce.jpg')">Download E-commerce Image</button>
+        </div>
+        
+        <div>
+            <canvas id="dashboard" width="400" height="220"></canvas>
+            <br>
+            <button class="download-btn" onclick="downloadImage('dashboard', 'project-dashboard.jpg')">Download Dashboard Image</button>
+        </div>
+        
+        <div>
+            <canvas id="mobile" width="400" height="220"></canvas>
+            <br>
+            <button class="download-btn" onclick="downloadImage('mobile', 'project-mobile-app.jpg')">Download Mobile App Image</button>
+        </div>
+        
+        <div>
+            <canvas id="portfolio" width="400" height="220"></canvas>
+            <br>
+            <button class="download-btn" onclick="downloadImage('portfolio', 'project-portfolio.jpg')">Download Portfolio Image</button>
+        </div>
+    </div>
+
+    <script>
+        function createProjectImage(canvasId, title, color) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, 400, 220);
+            gradient.addColorStop(0, color);
+            gradient.addColorStop(1, adjustBrightness(color, -30));
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 400, 220);
+            
+            // Add decorative elements
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+            
+            // Circle
+            ctx.beginPath();
+            ctx.arc(50, 50, 25, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Rectangle
+            ctx.fillRect(320, 30, 50, 35);
+            
+            // Triangle
+            ctx.beginPath();
+            ctx.moveTo(350, 150);
+            ctx.lineTo(370, 120);
+            ctx.lineTo(370, 180);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Add title
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 22px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(title, 200, 110);
+            
+            // Add subtitle
+            ctx.font = '14px Arial';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.fillText('Project Screenshot', 200, 130);
+            
+            // Add mock UI elements
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.fillRect(80, 160, 240, 35);
+            ctx.fillRect(80, 170, 180, 15);
+        }
+        
+        function adjustBrightness(hex, percent) {
+            const num = parseInt(hex.replace("#", ""), 16);
+            const amt = Math.round(2.55 * percent);
+            const R = (num >> 16) + amt;
+            const G = (num >> 8 & 0x00FF) + amt;
+            const B = (num & 0x0000FF) + amt;
+            return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+        }
+        
+        function downloadImage(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/jpeg', 0.9);
+            link.click();
+        }
+        
+        // Generate all images when page loads
+        window.onload = function() {
+            createProjectImage('ecommerce', 'E-commerce Platform', '#667eea');
+            createProjectImage('dashboard', 'Admin Dashboard', '#f093fb');
+            createProjectImage('mobile', 'Mobile App', '#f5576c');
+            createProjectImage('portfolio', 'Portfolio Website', '#764ba2');
+        };
+    </script>
+</body>
+</html> 
