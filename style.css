@@ -415,6 +415,19 @@ section:nth-child(even) {
     margin-top: 2rem;
 }
 
+.project-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.project-card-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
 .project-card {
     background: var(--surface-color);
     border-radius: 16px;
