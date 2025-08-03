@@ -5,6 +5,33 @@ console.log("Khusni Ja'far's professional website loaded successfully.");
 const navbar = document.getElementById('navbar');
 const navLinks = document.querySelectorAll('.nav-menu a');
 const sections = document.querySelectorAll('section');
+const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+const navMenu = document.getElementById('nav-menu');
+
+// Mobile Navigation Toggle
+mobileNavToggle.addEventListener('click', function() {
+    this.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    document.body.classList.toggle('nav-open');
+});
+
+// Close mobile menu when clicking on a link
+navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+        mobileNavToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.classList.remove('nav-open');
+    });
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(e) {
+    if (!navbar.contains(e.target)) {
+        mobileNavToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.classList.remove('nav-open');
+    }
+});
 
 // Smooth scrolling for navigation links
 navLinks.forEach(link => {
@@ -156,7 +183,7 @@ function revealOnScroll() {
 
 window.addEventListener('scroll', revealOnScroll);
 
-// Add CSS for active navigation state
+// Add CSS for active navigation state and mobile improvements
 const style = document.createElement('style');
 style.textContent = `
     .nav-menu a.active {
@@ -190,6 +217,67 @@ style.textContent = `
         opacity: 0;
         transition: opacity 0.5s ease;
     }
+    
+    /* Mobile navigation improvements */
+    body.nav-open {
+        overflow: hidden;
+    }
+    
+    /* Touch-friendly improvements for mobile */
+    @media (hover: none) and (pointer: coarse) {
+        .social-link,
+        .project-card,
+        .skill-tag,
+        .tech-tag,
+        .card,
+        .skill-category,
+        .gallery-item {
+            cursor: pointer;
+        }
+        
+        .social-link:active,
+        .project-card:active,
+        .skill-tag:active,
+        .tech-tag:active,
+        .card:active,
+        .skill-category:active,
+        .gallery-item:active {
+            transform: scale(0.98) !important;
+        }
+    }
+    
+    /* Prevent text selection on mobile for better UX */
+    .mobile-nav-toggle,
+    .nav-menu a,
+    .social-link {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    /* Improve tap targets on mobile */
+    @media (max-width: 768px) {
+        .nav-menu a {
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .social-link {
+            min-height: 44px;
+        }
+        
+        .skill-tag,
+        .tech-tag {
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
 `;
 document.head.appendChild(style);
 
@@ -209,4 +297,22 @@ function throttle(func, limit) {
 
 // Apply throttling to scroll events
 window.addEventListener('scroll', throttle(updateActiveNav, 100));
-window.addEventListener('scroll', throttle(revealOnScroll, 100)); 
+window.addEventListener('scroll', throttle(revealOnScroll, 100));
+
+// Handle orientation change for mobile
+window.addEventListener('orientationchange', function() {
+    setTimeout(() => {
+        // Close mobile menu on orientation change
+        mobileNavToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.classList.remove('nav-open');
+    }, 100);
+});
+
+// Add viewport meta tag for better mobile experience
+if (!document.querySelector('meta[name="viewport"]')) {
+    const viewport = document.createElement('meta');
+    viewport.name = 'viewport';
+    viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+    document.head.appendChild(viewport);
+} 
