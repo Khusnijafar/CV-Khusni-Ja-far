@@ -620,6 +620,11 @@ section:nth-child(even) {
     z-index: 2;
 }
 
+/* Tidy layout when multiple education cards are present */
+#education .education-card + .education-card {
+    margin-top: 1.5rem;
+}
+
 /* Footer */
 footer {
     background: var(--text-primary);
