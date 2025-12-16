@@ -6,7 +6,7 @@
     
     <!-- Main Page -->
     <url>
-        <loc>https://yourdomain.com/</loc>
+        <loc>https://khusnijafar.netlify.app/</loc>
         <lastmod>2025-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
@@ -14,42 +14,42 @@
     
     <!-- Section Anchors -->
     <url>
-        <loc>https://yourdomain.com/#summary</loc>
+        <loc>https://khusnijafar.netlify.app/#summary</loc>
         <lastmod>2025-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
-        <loc>https://yourdomain.com/#philosophy</loc>
+        <loc>https://khusnijafar.netlify.app/#philosophy</loc>
         <lastmod>2025-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
-        <loc>https://yourdomain.com/#work-experience</loc>
+        <loc>https://khusnijafar.netlify.app/#work-experience</loc>
         <lastmod>2025-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
-        <loc>https://yourdomain.com/#skills</loc>
+        <loc>https://khusnijafar.netlify.app/#skills</loc>
         <lastmod>2025-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     
     <url>
-        <loc>https://yourdomain.com/#blog</loc>
+        <loc>https://khusnijafar.netlify.app/#blog</loc>
         <lastmod>2025-01-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     
     <url>
-        <loc>https://yourdomain.com/#education</loc>
+        <loc>https://khusnijafar.netlify.app/#education</loc>
         <lastmod>2025-01-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
