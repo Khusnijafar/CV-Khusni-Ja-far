@@ -1,42 +1,6 @@
+# Allow all search engines to index this website
 User-agent: *
-Disallow: /
+Allow: /
 
-# Block all search engines from indexing this website
-User-agent: Googlebot
-Disallow: /
-
-User-agent: Bingbot
-Disallow: /
-
-User-agent: Slurp
-Disallow: /
-
-User-agent: DuckDuckBot
-Disallow: /
-
-User-agent: Baiduspider
-Disallow: /
-
-User-agent: YandexBot
-Disallow: /
-
-User-agent: facebookexternalhit
-Disallow: /
-
-User-agent: Twitterbot
-Disallow: /
-
-User-agent: LinkedInBot
-Disallow: /
-
-User-agent: WhatsApp
-Disallow: /
-
-User-agent: Applebot
-Disallow: /
-
-User-agent: ia_archiver
-Disallow: /
-
-# Prevent caching
-Crawl-delay: 86400
+# Sitemap location
+Sitemap: https://yourdomain.com/sitemap.xml
