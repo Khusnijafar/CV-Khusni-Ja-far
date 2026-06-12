@@ -106,11 +106,42 @@ header h1 {
     letter-spacing: -0.02em;
 }
 
-header p {
+header p,
+header .header-title {
     font-size: 1.4rem;
     font-weight: 400;
     opacity: 0.95;
+    margin-bottom: 1.5rem;
+}
+
+/* Contact Info in Header */
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem 2rem;
     margin-bottom: 2rem;
+}
+
+.contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+a.contact-item:hover {
+    color: var(--accent-color);
+    transform: translateY(-1px);
+}
+
+.contact-item svg {
+    flex-shrink: 0;
+    opacity: 0.9;
 }
 
 /* Social Links */
@@ -321,16 +352,18 @@ section:nth-child(even) {
 
 /* Summary Section */
 #summary .card {
-    text-align: center;
+    text-align: left;
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--text-secondary);
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 /* Blog Section */
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin-top: 2rem;
 }
@@ -526,6 +559,21 @@ section:nth-child(even) {
     margin-top: 2rem;
 }
 
+.skills-grid-single {
+    grid-template-columns: 1fr;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.skills-grid-single .skill-category {
+    text-align: center;
+}
+
+.skills-grid-single .skill-tags {
+    justify-content: center;
+}
+
 .skill-category {
     background: var(--surface-color);
     border-radius: 12px;
@@ -719,14 +767,34 @@ section:nth-child(even) {
 }
 
 /* Education Section */
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
 .education-card {
     text-align: center;
     background: var(--gradient-secondary);
     color: white;
     border-radius: 16px;
-    padding: 3rem 2rem;
+    padding: 2.5rem 2rem;
     position: relative;
     overflow: hidden;
+}
+
+.education-degree {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
 }
 
 .education-card::before {
@@ -740,23 +808,66 @@ section:nth-child(even) {
 }
 
 .education-card h3 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     position: relative;
     z-index: 2;
 }
 
 .education-card p {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     opacity: 0.9;
     position: relative;
     z-index: 2;
+    font-weight: 500;
+}
+
+/* Language Section */
+.language-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.language-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--surface-color);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.language-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--box-shadow-hover);
+}
+
+.language-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.language-level {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    background: rgba(37, 99, 235, 0.08);
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
 }
 
 /* Tidy layout when multiple education cards are present */
 #education .education-card + .education-card {
-    margin-top: 1.5rem;
+    margin-top: 0;
 }
 
 /* Footer */
@@ -966,6 +1077,30 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .education-grid,
+    .language-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-item {
+        font-size: 0.9rem;
+    }
+
+    header p,
+    header .header-title {
+        font-size: 1.2rem;
+        line-height: 1.4;
+        padding: 0 0.5rem;
+    }
+
     .container {
         padding: 0 1rem;
     }
@@ -1219,7 +1354,8 @@ footer {
         line-height: 1.1;
     }
     
-    header p {
+    header p,
+    header .header-title {
         font-size: 1.1rem;
         line-height: 1.3;
     }

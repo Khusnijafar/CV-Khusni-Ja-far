@@ -169,7 +169,7 @@ window.addEventListener('load', () => {
 
 // Smooth reveal animation for sections
 function revealOnScroll() {
-    const reveals = document.querySelectorAll('.card, .skill-category, .education-card');
+    const reveals = document.querySelectorAll('.card, .skill-category, .education-card, .language-card');
     
     reveals.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
