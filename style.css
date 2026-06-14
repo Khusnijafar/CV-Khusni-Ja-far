@@ -203,51 +203,134 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   pointer-events: none;
 }
 
-.hero-container {
+/* ── Hero Split Layout ── */
+.hero-split {
   position: relative;
   z-index: 2;
-  text-align: center;
-  padding: 120px var(--sp-md) var(--sp-xl);
-  max-width: 680px;
+  max-width: 1160px;
+  width: 100%;
   margin: 0 auto;
+  padding: 110px 2rem 5rem;
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  min-height: 100vh;
 }
 
-/* Avatar */
-.hero-avatar-wrapper {
-  position: relative;
-  width: 140px; height: 140px;
-  margin: 0 auto var(--sp-md);
+/* Text column */
+.hero-text {
+  flex: 1;
+  min-width: 0;
 }
-.hero-avatar {
-  width: 140px; height: 140px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid rgba(255,255,255,0.15);
-  position: relative;
-  z-index: 3;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+.hero-text .hero-actions {
+  justify-content: flex-start;
 }
-.avatar-ring {
+
+/* Photo column */
+.hero-photo-side {
+  flex-shrink: 0;
+  width: clamp(280px, 32vw, 400px);
+}
+
+/* Photo frame */
+.hero-photo-frame {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+/* gradient accent slab behind the photo */
+.photo-accent {
   position: absolute;
-  border-radius: 50%;
-  border: 1.5px solid;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  animation: pulseRing 3s ease-in-out infinite;
+  inset: -12px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-teal) 100%);
+  transform: rotate(3deg);
+  opacity: 0.22;
+  filter: blur(2px);
+  z-index: 0;
 }
-.avatar-ring-1 {
-  width: 160px; height: 160px;
-  border-color: rgba(108, 99, 255, 0.4);
-  animation-delay: 0s;
+
+.hero-photo-img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+  border-radius: 22px;
+  transform: rotate(-2deg);
+  box-shadow:
+    0 40px 90px rgba(0,0,0,0.55),
+    0 0 0 1.5px rgba(255,255,255,0.07),
+    0 0 60px rgba(108,99,255,0.15);
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.175,0.885,0.32,1.275);
 }
-.avatar-ring-2 {
-  width: 182px; height: 182px;
-  border-color: rgba(6, 214, 160, 0.2);
-  animation-delay: 1s;
+.hero-photo-frame:hover .hero-photo-img {
+  transform: rotate(0deg) scale(1.02);
 }
-@keyframes pulseRing {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-  50%       { transform: translate(-50%, -50%) scale(1.04); opacity: 0.6; }
+.hero-photo-frame:hover .photo-accent {
+  opacity: 0.32;
+  transform: rotate(4deg) scale(1.02);
+  transition: all 0.5s ease;
+}
+
+/* Floating formula chips */
+.fml {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: rgba(255,255,255,0.92);
+  background: rgba(10,10,25,0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(108,99,255,0.45);
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  white-space: nowrap;
+  z-index: 4;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+  animation: floatFormula var(--fdur, 5s) ease-in-out infinite;
+  animation-delay: var(--fdelay, 0s);
+}
+.fml-1 { top: 10%;  left: -28%;  --fdelay: 0s;   --fdur: 5.5s; }
+.fml-2 { top: 64%;  left: -24%;  --fdelay: 1.6s;  --fdur: 4.8s; }
+.fml-3 { top: 38%;  right: -22%; --fdelay: 0.9s;  --fdur: 6.2s; }
+@keyframes floatFormula {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* Subject badges anchored to photo corners */
+.photo-badge {
+  position: absolute;
+  z-index: 5;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  animation: floatFormula 6s ease-in-out infinite;
+}
+.photo-badge-math {
+  bottom: 14%;
+  right: -14%;
+  background: rgba(108,99,255,0.85);
+  color: #fff;
+  --fdelay: 0.4s;
+  animation-delay: 0.4s;
+}
+.photo-badge-physics {
+  top: 5%;
+  right: -10%;
+  background: rgba(6,214,160,0.85);
+  color: #0a2a22;
+  --fdelay: 2s;
+  animation-delay: 2s;
 }
 
 /* Hero text */
@@ -287,7 +370,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hero-actions {
   display: flex;
   gap: 0.75rem;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 .btn {
@@ -1225,12 +1308,24 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     border-radius: 0;
   }
 
-  /* Hero */
-  .hero-container { padding-top: 100px; }
-  .hero-avatar-wrapper { width: 120px; height: 120px; }
-  .hero-avatar { width: 120px; height: 120px; }
-  .avatar-ring-1 { width: 138px; height: 138px; }
-  .avatar-ring-2 { width: 158px; height: 158px; }
+  /* Hero split → column on mobile */
+  .hero-split {
+    flex-direction: column-reverse;   /* photo on top, text below */
+    padding-top: 90px;
+    padding-bottom: 3rem;
+    gap: 2.5rem;
+    min-height: auto;
+    align-items: center;
+    text-align: center;
+  }
+  .hero-text .hero-actions { justify-content: center; }
+  .hero-photo-side {
+    width: clamp(200px, 55vw, 280px);
+  }
+  /* hide overflow formula chips on mobile */
+  .fml, .photo-badge { display: none; }
+  /* reduce photo tilt on small screens */
+  .hero-photo-img { transform: rotate(-1deg); border-radius: 16px; }
 
   /* Sections */
   .about-card { padding: var(--sp-md); }
@@ -1280,4 +1375,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   .reveal { transition: none; }
+}
+
+/* ── Tablet: narrow the gap a bit ── */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .hero-split { gap: 3rem; padding: 100px 2rem 4rem; }
+  .hero-photo-side { width: clamp(240px, 28vw, 320px); }
+  .fml { font-size: 0.66rem; }
+  .fml-1 { left: -20%; }
+  .fml-2 { left: -18%; }
+  .fml-3 { right: -16%; }
 }
