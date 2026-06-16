@@ -96,9 +96,7 @@ function createSymbols() {
 const PHRASES = [
   'Mathematics',
   'Physics',
-  'Informatics',
-  'Coding',
-  'Critical Thinking',
+  'Programming',
 ];
 const typedEl   = document.getElementById('typed');
 let phraseIndex = 0;
